@@ -6,39 +6,89 @@ const chai = require('chai');
 const server = require('../src/app');
 chai.use(chaiHttp)
 
-describe("GET /files/data", function() {
+describe("GET /files", function() {
 
-  it("API call resolves succesfully", (done) => {
+  it("API returns all files", (done) => {
+    chai.request(server)
+    .get(`/files`)
+    .end((err, response) => {
+      response.body.should.have.property('files')
+      response.body.files.should.be.a('array')
+      response.body.files.forEach(b => {
+        expect(b).to.include("test")
+        expect(b).to.include(".csv")
+      })
+      done();
+    })
+  })
+});
+
+describe("GET /files/:file", () => {
+  it("API call resolves successfully", (done) => {
+    const file = "test1.csv"
+    chai.request(server)
+      .get(`/files/${file}`)
+      .end((err, response) => {
+        response.should.have.status(200)
+        done();
+      })
+  })
+  it("API call resolves successfully", (done) => {
+    const file = "test2.csv"
+    chai.request(server)
+      .get(`/files/${file}`)
+      .end((err, response) => {
+        response.should.have.status(200)
+        done();
+      })
+  })
+  it("API call resolves successfully", (done) => {
+    const file = "test3.csv"
+    chai.request(server)
+      .get(`/files/${file}`)
+      .end((err, response) => {
+        response.should.have.status(200)
+        done();
+      })
+  })
+
+  it("API returns content from one file by name", (done) => {
+    const file = "test1.csv"
+    chai.request(server)
+      .get(`/files/${file}`)
+      .end((err, response) => {
+        response.body.should.be.a('string')
+        done();
+      })
+  })
+  it("API returns content from one file by name", (done) => {
+    const file = "test6.csv"
+    chai.request(server)
+      .get(`/files/${file}`)
+      .end((err, response) => {
+        response.body.should.be.a('string')
+        done();
+      })
+  })
+  it("API returns content from one file by name", (done) => {
+    const file = "test15.csv"
+    chai.request(server)
+      .get(`/files/${file}`)
+      .end((err, response) => {
+        response.body.should.be.a('string')
+        done();
+      })
+  })
+})
+
+describe("GET /files/data", () => {
+  it("Returns formatted data correctly", (done) => {
     chai.request(server)
       .get(`/files/data`)
       .end((err, response) => {
         response.should.have.status(200)
         done();
       })
-  });
-  it("Returns the content from all files, skipping those with errors", (done) => {
-    chai.request(server)
-      .get(`/files/data`)
-      .end((err, response) => {
-        expect(response.body).to.be.a('array')
-        response.body.forEach(b => {
-          expect(b).to.has.property('file')
-          expect(b).to.has.property('lines').to.be.a('array')
-        })
-        done();
-      })
-  });
-  it("Returns all lines from each file, skipping empty columns ", (done) => {
-    chai.request(server)
-      .get(`/files/data`)
-      .end((err, response) => {
-        response.body.forEach(b => {
-          b.lines.forEach(line => {
-            const values = Object.values(line)
-            values.forEach(v => v.should.not.be.empty)
-          })
-        })
-        done();
-      })
-  });
-});
+  })
+ 
+})

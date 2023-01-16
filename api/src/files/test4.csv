@@ -1,6 +1,0 @@
-{
-  "code": "API-500",
-  "message": "File error",
-  "details": "FILE_ERROR",
-  "status": 500
-}
