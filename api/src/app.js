@@ -8,7 +8,7 @@ const swaggerSpec = {
   definition: {
     openapi: "3.0.0",
     info: {
-      title: "",
+      title: "FormatCSV API",
       version: "1.0"
     },
     servers: [
