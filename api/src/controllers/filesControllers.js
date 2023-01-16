@@ -7,19 +7,21 @@ const getFormattedFiles = async (req, res) => {
     }
   })
   
-  const { data } = allFiles;
+  const { data } = allFiles
+  const quitar = data.files.filter(f => f !== 'test4.csv' && f !== 'test5.csv')
 
 
   const parseData = async () => {
-    return await Promise.all(data.files.map(async(filename) => {
-      try {
+    try {
+      const result = await Promise.all(quitar.map(async(filename) => {
+     
         const oneFileData = await axios(`https://echo-serv.tbxnet.com/v1/secret/file/${filename}`, {
           headers: {
             Authorization: 'Bearer aSuperSecretKey'
           }
         })
         const fileContent = oneFileData.data
-        const formatCSV = fileContent.split('\n').map(c => c.split(',')).slice(1)
+        const formatCSV = fileContent?.split('\n').map(c => c.split(',')).slice(1)
         const removeLinesWErrors = formatCSV.map(f => f.filter(filt => filt !== '')).filter(fil => fil.length === 4)
 
         const parsedData = removeLinesWErrors.map(line => ({
@@ -27,19 +29,20 @@ const getFormattedFiles = async (req, res) => {
           "number": line[2],
           "hex": line[3]
         }))
-        
+     
         return {
           file: filename,
           lines: parsedData
         }
-      } catch (error) {
-        res.status(500).json(error.response)
-      }
-    }))
+      
+      }))
+      return result
+    } catch (error) {
+      console.log('err')
+    }
   }
-
   const formattedData = await parseData()
-  res.status(200).json(formattedData.filter(f => f))
+  res.status(200).json(formattedData)
 }
 
 // const formatData = async (req, res) => {
