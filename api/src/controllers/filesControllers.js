@@ -31,10 +31,9 @@ const getFormattedFiles = async (req, res) => {
         }))
      
         return {
-          file: filename,
-          lines: parsedData
+          "file": filename,
+          "lines": parsedData
         }
-      
       }))
       return result
     } catch (error) {
