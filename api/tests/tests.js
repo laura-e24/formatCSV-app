@@ -17,7 +17,7 @@ describe("GET /files/data", function() {
     })
   })
 
-  it("API returns all files", (done) => {
+  it("API returns all files with its formatted data", (done) => {
     chai.request(server)
     .get(`/files/data`)
     .end((err, response) => {
@@ -34,11 +34,10 @@ describe("GET /files/data", function() {
     })
   })
 
-  it("API returns all files, skipping lines with errors", (done) => {
+  it("API returns all files with its formatted data, but skipping lines with errors", (done) => {
     chai.request(server)
     .get(`/files/data`)
     .end((err, response) => {
-      expect(response.body).to.be.a('array')
       response.body.forEach(file => {
         file.lines.forEach(line => {
           expect(line).to.have.property("text")
