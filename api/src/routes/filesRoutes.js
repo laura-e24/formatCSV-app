@@ -1,5 +1,5 @@
 const express = require('express')
-const { getFormattedFiles } = require('../controllers/filesControllers')
+const { getFormattedFiles, getOneFileInfo } = require('../controllers/filesControllers')
 const router = express.Router()
 
 /** 
@@ -37,5 +37,6 @@ const router = express.Router()
  */ 
 
 router.get('/', getFormattedFiles)
+router.get('/:file', getOneFileInfo)
 
 module.exports = router
