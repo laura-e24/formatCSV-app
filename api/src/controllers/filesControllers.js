@@ -64,4 +64,4 @@ const getFormattedFiles = async (req, res) => {
   }
 }
 
-module.exports = { getFormattedFiles, getOneFileInfo }
+module.exports = { getFormattedFiles }

@@ -1,5 +1,5 @@
 const express = require('express')
-const { getFormattedFiles, getOneFileInfo } = require('../controllers/filesControllers')
+const { getFormattedFiles } = require('../controllers/filesControllers')
 const router = express.Router()
 
 /** 
@@ -14,8 +14,8 @@ const router = express.Router()
  *          lines: 
  *            type: array
  *        example: 
- *          file: "test2.csv"
- *          lines: [{ "text": "ruCjUwzcRKUhbr", "number": "56864", "hex": "411b9dc1e423b8f9afc17830ae81c126" }]    
+ *          file: "test10.csv"
+ *          lines: [{ "text": "ruHiwzcRKUhbY", "number": "56877", "hex": "711b9dc1p423b8f9afc17830ae81b789" }]
  */ 
 
 /** 
@@ -23,20 +23,18 @@ const router = express.Router()
  *   /files/data: 
  *     get:
  *      summary: Retrieves all available files in JSON format.
- *      tags: [File]
+ *      tags: [Files data]
  *      responses:
  *        200:
- *          description: Retrieves all available CSV files with their corresponding data, and then transforms it into a JSON object
+ *          description: Files were retrieved and formatted successfully.
  *          content:
  *            application/json:
  *              schema:
  *                type: array
  *                items:
  *                  $ref: '#/components/schemas/File'
- *                
  */ 
 
 router.get('/', getFormattedFiles)
-router.get('/:file', getOneFileInfo)
 
 module.exports = router
