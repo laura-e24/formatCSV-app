@@ -1,4 +1,4 @@
-# FormatCSV App
+# FormatCSV
 
 Esta aplicación se encarga de recibir todos los archivos disponibles en una API, junto con el contenido de cada uno, para luego formatear toda su información de manera legible y ordenada para finalmente exponerla en una tabla.
 
