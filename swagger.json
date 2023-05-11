@@ -11,7 +11,7 @@
     }
   ],
   "paths": {
-    "/files/data": {
+    "/api/files/data": {
       "get": {
         "summary": "Finds all available files",
         "description": "Retrieves all available files in JSON format",
