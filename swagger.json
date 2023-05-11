@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "https://laura-e24.github.io/formatCSV-app"
+      "url": "https://laura-e24.github.io/formatCSV-app/api/"
     }
   ],
   "tags": [
