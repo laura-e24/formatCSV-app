@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "FormatCSV - OpenAPI 3.0",
+    "title": "FormatCSV - OpenAPI 2.0",
     "description": "description",
     "version": "0.1.9"
   },
@@ -12,8 +12,8 @@
   ],
   "tags": [
     {
-      "name": "pet",
-      "description": "Everything about your Pets"
+      "name": "files",
+      "description": "CSV file formatting"
     }
   ],
   "paths": {
