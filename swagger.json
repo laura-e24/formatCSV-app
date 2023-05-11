@@ -1,47 +1,62 @@
 {
+  "openapi": "3.0.3",
+  "info": {
+    "title": "FormatCSV - OpenAPI 3.0",
+    "description": "description",
+    "version": "0.1.9"
+  },
+  "servers": [
+    {
+      "url": "https://petstore3.swagger.io/api/v3"
+    }
+  ],
+  "tags": [
+    {
+      "name": "pet",
+      "description": "Everything about your Pets"
+    }
+  ],
+  "paths": {
+    "/files/data": {
+      "get": {
+        "summary": "Finds all available files",
+        "description": "Retrieves all available files in JSON format",
+        "responses": {
+          "200": {
+            "description": "Files were retrieved and formatted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/File"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
   "components": {
     "schemas": {
       "File": {
         "type": "object",
         "properties": {
           "file": {
-            "type": "string"
+            "type": "string",
+            "example": "test10.csv"
           },
           "lines": {
-            "type": "array"
-          }
-        },
-        "example": {
-          "file": "test10.csv",
-          "lines": [
-            {
-              "text": "ruHiwzcRKUhbY",
-              "number": "56877",
-              "hex": "711b9dc1p423b8f9afc17830ae81b789"
-            }
-          ]
-        }
-      }
-    }
-  },
-  "/files/data": {
-    "get": {
-      "summary": "Retrieves all available files in JSON format.",
-      "tags": [
-        "Files data"
-      ],
-      "responses": {
-        "200": {
-          "description": "Files were retrieved and formatted successfully.",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/File"
-                }
+            "type": "array",
+            "example": [
+              {
+                "text": "ruHiwzcRKUhbY",
+                "number": "56877",
+                "hex": "711b9dc1p423b8f9afc17830ae81b789"
               }
-            }
+            ]
           }
         }
       }
